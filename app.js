@@ -14,9 +14,24 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 // use the static files such as css,img,js file
-app.use(express.static('public'))
+app.use(express.static("/CRUD with MSQL/public"));
+
+
+// Template Files [what is the use of this]
+const handlebars = exphbs.create({
+    extname: ".hbs"
+});
+app.engine('hbs', handlebars.engine);
+app.set('view engine', "hbs");
+
+
+// Routes
+app.get("/", (req, res) => {
+    res.render("home");
+})
+
 
 
 app.listen(port, () => {
-    console.log("Listing in the port no: ", port);
+    console.log(`Listing in the port no: http://localhost:${port}`);
 });
