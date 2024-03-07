@@ -21,12 +21,28 @@ app.use(express.static("/CRUD with MSQL/public"));
 const handlebars = exphbs.create({
     extname: ".hbs"
 });
-app.engine('hbs', handlebars.engine);
+app.engine("hbs", handlebars.engine);
 app.set('view engine', "hbs");
+
+// Mysql connection
+const con = mysql.createPool({
+    connectionLimit: 10,
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME
+});
+
+// check dataBase Connection
+con.getConnection((err, connection) => {
+    if (err) throw err
+    console.log("Connection Sucess");
+})
+
 
 
 // Routes
-app.get("/", (req, res) => {
+app.get('/', (req, res) => {
     res.render("home");
 })
 
