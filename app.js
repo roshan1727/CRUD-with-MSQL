@@ -1,10 +1,10 @@
 const express = require("express");
 const exphbs = require("express-handlebars");
 const bodyParser = require("body-parser");
-const mysql = require("mysql");
+const mysql = require("mysql2/promise"); // Using mysql2/promise for async/await syntax
+const dotenv = require("dotenv");
 
-require('dotenv').config();
-
+dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -13,19 +13,18 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-// use the static files such as css,img,js file
-app.use(express.static("/CRUD with MSQL/public"));
+// Serve static files such as css, img, js files
+app.use(express.static(__dirname + "/public"));
 
-
-// Template Files [what is the use of this]
+// Template engine setup
 const handlebars = exphbs.create({
     extname: ".hbs"
 });
 app.engine("hbs", handlebars.engine);
-app.set('view engine', "hbs");
+app.set("view engine", "hbs");
 
-// Mysql connection
-const con = mysql.createPool({
+// MySQL connection pool
+const pool = mysql.createPool({
     connectionLimit: 10,
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
@@ -33,21 +32,22 @@ const con = mysql.createPool({
     database: process.env.DB_NAME
 });
 
-// check dataBase Connection
-con.getConnection((err, connection) => {
-    if (err) throw err
-    console.log("Connection Sucess");
-})
-
-
+// Check database connection
+pool.getConnection()
+    .then(connection => {
+        console.log("Database connection successful");
+        connection.release(); // Release the connection
+    })
+    .catch(error => {
+        console.error("Error connecting to database: ", error.message);
+    });
 
 // Routes
-app.get('/', (req, res) => {
+app.get("/", (req, res) => {
     res.render("home");
-})
+});
 
-
-
+// Start server
 app.listen(port, () => {
-    console.log(`Listing in the port no: http://localhost:${port}`);
+    console.log(`Listening on port: http://localhost:${port}`);
 });
