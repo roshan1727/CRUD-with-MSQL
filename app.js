@@ -47,6 +47,10 @@ app.get("/", (req, res) => {
     res.render("home");
 });
 
+app.get("/api", (req, res) => {
+    res.json("hello");
+});
+
 // Start server
 app.listen(port, () => {
     console.log(`Listening on port: http://localhost:${port}`);
