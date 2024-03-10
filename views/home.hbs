@@ -12,6 +12,15 @@
         </tr>
     </thead>
     <tbody>
-       
+       {{#each rows}}
+       <tr>
+        <td>{{this.ID}}</td>
+        <td>{{this.NAME}}</td>
+        <td>{{this.price}}</td>
+        <td>{{this.location}}</td>
+        <td></td>
+        <td></td>
+       </tr>
+       {{/each}}
     </tbody>
 </table>

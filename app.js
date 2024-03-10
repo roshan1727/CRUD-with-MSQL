@@ -43,13 +43,8 @@ pool.getConnection()
     });
 
 // Routes
-app.get("/", (req, res) => {
-    res.render("home");
-});
-
-app.get("/api", (req, res) => {
-    res.json("hello");
-});
+const routes = require("./server/routes/product");
+app.use('/', routes);
 
 // Start server
 app.listen(port, () => {
