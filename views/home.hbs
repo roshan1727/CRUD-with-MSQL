@@ -1,5 +1,5 @@
 <h3>Product Management System</h3>
-
+<p><a href="/addUser" class="addBtn">Add User</a></p>
 <table>
     <thead>
         <tr>
@@ -18,8 +18,8 @@
         <td>{{this.NAME}}</td>
         <td>{{this.price}}</td>
         <td>{{this.location}}</td>
-        <td></td>
-        <td></td>
+        <td><a class="edit" href="{{this.ID}}">Edit</a></td>
+        <td><a class="delete" href="{{this.ID}}">Delete</a></td>
        </tr>
        {{/each}}
     </tbody>
