@@ -22,3 +22,18 @@ exports.view = async (req, res) => {
         rows
     });
 };
+
+exports.view = async (req, res) => {
+    let rows; // Define rows variable here
+    try {
+        const connection = await pool.getConnection();
+        [rows, fields] = await connection.query("SELECT * FROM product where ID==10");
+        connection.release();
+        console.log("Database query successful");
+    } catch (error) {
+        console.error("Error executing query: ", error.message);
+    }
+    res.render("home", {
+        rows
+    });
+};
