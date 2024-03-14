@@ -23,6 +23,24 @@ exports.view = async (req, res) => {
     });
 };
 
-exports.addProduct = async (req, res) => {
-    res.render("addUser");
+exports.addproduct = async (req, res) => {
+    res.render("addproduct");
+}
+
+exports.saveRecord = async (req, res) => {
+    let rows; // Define rows variable here
+    const {
+        name,
+        Price,
+        Location
+    } = req.body;
+    try {
+        const connection = await pool.getConnection();
+        [rows, fields] = await connection.query("insert into product (NAME,price,location) values (?,?,?)", [name, Price, Location]);
+        connection.release();
+        console.log("Database query successful");
+    } catch (error) {
+        console.error("Error executing query: ", error.message);
+    }
+    res.render("addproduct");
 }

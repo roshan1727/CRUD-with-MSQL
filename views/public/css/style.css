@@ -1,0 +1,88 @@
+@import url("https://fonts.googleapis.com/css2?family=Madimi+One&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-color: rgb(56, 112, 215);
+}
+
+body {
+  font-family: "Madimi One Static", sans-serif;
+  background-color: rgb(208, 200, 200);
+  height: 1000px;
+  margin: 0 auto;
+  font-size: 10px;
+}
+
+h3 {
+  font-size: 13px;
+  color: tomato;
+  padding: 10px;
+  border-bottom: 1px solid #afafaf;
+}
+
+table {
+  width: 100%;
+  padding: 10px;
+  border-collapse: collapse;
+}
+
+table thead td {
+  padding: 5px;
+  border: 1px solid #afafaf;
+  color: white;
+}
+
+table tbody td {
+  padding: 5px;
+}
+
+table tbody tr:nth-child(even) {
+  background-color: cornsilk;
+}
+
+.addBtn,
+.edit,
+.delete {
+  text-decoration: none;
+  color: white;
+  background-color: blueviolet;
+  padding: 2px 10px 2px 10px;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.delete {
+  background-color: red;
+}
+
+p {
+  text-align: right;
+  padding: 5px;
+}
+
+.addBtn {
+  background-color: darkslategray;
+}
+
+.form-group {
+  margin-top: 10px;
+  padding: 6px;
+}
+
+.form-group label,
+.form-group input {
+  display: block;
+}
+
+button {
+  color: wheat;
+  padding: 2px 10px 2px 10px;
+  border-radius: 3px;
+  border: none;
+  background-color: blueviolet;
+  font-size: 13px;
+}
