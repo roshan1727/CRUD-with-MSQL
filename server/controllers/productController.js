@@ -44,3 +44,7 @@ exports.saveRecord = async (req, res) => {
     }
     res.render("addproduct");
 }
+
+exports.deleteProduct = async (req, res) => {
+    res.render("deletemsg");
+}
