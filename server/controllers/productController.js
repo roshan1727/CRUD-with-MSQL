@@ -39,12 +39,18 @@ exports.saveRecord = async (req, res) => {
         [rows, fields] = await connection.query("insert into product (NAME,price,location) values (?,?,?)", [name, Price, Location]);
         connection.release();
         console.log("Database query successful");
+        res.render("addproduct", {
+            msg: "User Details Added Success"
+        });
     } catch (error) {
         console.error("Error executing query: ", error.message);
+        res.render("addproduct", {
+            msg: "Error adding user details"
+        });
     }
-    res.render("addproduct");
 }
 
-exports.deleteProduct = async (req, res) => {
-    res.render("deletemsg");
-}
+
+// exports.deleteProduct = async (req, res) => {
+//     res.render("deletemsg");
+// }

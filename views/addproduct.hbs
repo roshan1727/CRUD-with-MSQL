@@ -1,5 +1,7 @@
-
 <h3>Add New Product</h3>
+{{#if msg}}
+<div class="alert">{{msg}}</div>
+{{/if}}
 <form method="post" action="/addproduct">
 <div class="form-group">
     <label for="name">Product Name</label>
