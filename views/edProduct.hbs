@@ -1,19 +1,21 @@
-<h3>Add New Product</h3>
+<h3>Edit Product details</h3>
 {{#if msg}}
 <div class="alert">{{msg}}</div>
 {{/if}}
+
+{{#each rows}}
 <form method="post" action="/addproduct">
 <div class="form-group">
     <label for="name">Product Name</label>
-    <input type="text" name="name">
+    <input type="text" name="name" value="{{this.NAME}}">
 </div>
 <div class="form-group">
     <label for="Price">Price</label>
-    <input type="text" name="Price">
+    <input type="text" name="Price" value="{{this.price}}"> 
 </div>
 <div class="form-group">
     <label for="Location">Location</label>
-    <input type="text" name="Location">
+    <input type="text" name="Location" value="{{this.location}}">
 </div>
 
 <div class="form-group">
@@ -22,3 +24,5 @@
 </div>
 
 </form>
+
+{{/each}}

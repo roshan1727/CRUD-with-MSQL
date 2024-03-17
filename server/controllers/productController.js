@@ -51,6 +51,22 @@ exports.saveRecord = async (req, res) => {
 }
 
 
+exports.editProduct = async (req, res) => {
+    let rows; // Define rows variable here
+    let id = req.params.id;
+    try {
+        const connection = await pool.getConnection();
+        [rows, fields] = await connection.query("SELECT * FROM product where id=?", [id]);
+        connection.release();
+        console.log("Database query successful");
+    } catch (error) {
+        console.error("Error executing query: ", error.message);
+    }
+    res.render("home", {
+        rows
+    });
+    res.render("edProduct");
+}
 // exports.deleteProduct = async (req, res) => {
 //     res.render("deletemsg");
 // }
