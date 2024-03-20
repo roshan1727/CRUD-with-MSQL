@@ -26,3 +26,34 @@
        {{/each}}
     </tbody>
 </table>
+
+
+<h3>Product Management System</h3>
+
+
+<p><a href="/addproduct" class="addBtn">Add Product</a></p>
+<table>
+    <thead>
+        <tr>
+            <td>#</td>
+            <td>Product Name</td>
+            <td>Price</td>
+            <td>Location</td>
+            <td>Edit</td>
+            <td>Delete</td>
+        </tr>
+    </thead>
+    <tbody>
+       {{#each rows}}
+       <tr>
+        <td>{{this.ID}}</td>
+        <td>{{this.NAME}}</td>
+        <td>{{this.price}}</td>
+        <td>{{this.location}}</td>
+        <td><a class="edit" href="/editproduct/{{this.ID}}">Edit</a></td>
+        <td><a onclick="return confirm('Are you sure?')" class="delete" href="/deleteproduct/{{this.ID}}">Delete</a></td>
+       </tr>
+       {{/each}}
+    </tbody>
+</table>
+
