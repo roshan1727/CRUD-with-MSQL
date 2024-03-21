@@ -1,7 +1,7 @@
 const express = require("express");
 const exphbs = require("express-handlebars");
 const bodyParser = require("body-parser");
-const mysql = require("mysql2/promise"); // Using mysql2/promise for async/await syntax
+
 const dotenv = require("dotenv");
 
 dotenv.config();
@@ -23,24 +23,7 @@ const handlebars = exphbs.create({
 app.engine("hbs", handlebars.engine);
 app.set("view engine", "hbs");
 
-// MySQL connection pool
-const pool = mysql.createPool({
-    connectionLimit: 10,
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASS,
-    database: process.env.DB_NAME
-});
 
-// Check database connection
-pool.getConnection()
-    .then(connection => {
-        console.log("Database connection successful");
-        connection.release(); // Release the connection
-    })
-    .catch(error => {
-        console.error("Error connecting to database: ", error.message);
-    });
 
 // Routes
 const routes = require("./server/routes/product");
